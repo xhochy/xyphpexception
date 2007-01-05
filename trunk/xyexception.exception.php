@@ -1,6 +1,6 @@
 <?php
 /**
- * Wird geworfen, wenn eine Session schon benutzt wird.
+ * The parent class for using the framework. Do not use this class directly!
  *
  * @author Uwe L. Korn <uwelk@xhochy.org>
  */
