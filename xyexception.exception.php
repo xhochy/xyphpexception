@@ -4,7 +4,7 @@
  *
  * @author Uwe L. Korn <uwelk@xhochy.org>
  */
-class XYException extends Exception
+abstract class XYException extends Exception
 {
     public function __construct($message, $code = 0)
     {
