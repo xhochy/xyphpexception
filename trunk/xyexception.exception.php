@@ -109,5 +109,23 @@ class XYException extends Exception
         $body.= $this->getMailBody();
         mail($_CONFIG['Mail']['Recipent'], $this->getMailSubject(), $body, $headers);
     }
+
+    /**
+     * Gets the Subject of the Message
+     *
+     * @abstract
+     * @author Uwe L. Korn <uwelk@xhochy.org>
+     * @return string
+     */
+    abstract protected function getMailSubject();
+
+    /**
+     * Gets the main bod of the Message
+     * 
+     * @abstract
+     * @author Uwe L. Korn <uwelk@xhochy.org>
+     * @return string
+     */
+    abstract protected function getMailBody();
 }
 ?>
