@@ -101,17 +101,13 @@ class XYException extends Exception
     public function SendExcpetionPerMail()
     {
         Global $_CONFIG;
-        $oMail = Mail::factory('smtp', $_CONFIG['Mail']);
-        $headers = array();
-        $headers['From'] = $_CONFIG['Mail']['From'];
-        $headers['To'] = $_CONFIG['Mail']['To'];
-        $headers['Subject'] = $this->getMailSubject();
+        $headers = 'From: '.$_CONFIG['Mail']['From'];
         $body = 'Server: '.$_SERVER['HTTP_HOST']."\n";
         $body.= 'System: '.shell_exec('uname -a');
         $body.= 'Sofware: '.$_SERVER["SERVER_SOFTWARE"]."\n";
         $body.= "\n";
         $body.= $this->getMailBody();
-        $oMail->send($_CONFIG['Mail']['Recipent'], $headers, $body); 
+        mail($_CONFIG['Mail']['Recipent'], $this->getMailSubject(), $body, $headers);
     }
 }
 ?>
