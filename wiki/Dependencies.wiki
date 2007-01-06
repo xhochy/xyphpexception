@@ -1,0 +1,6 @@
+#summary What you need to use this
+#labels Featured
+
+== Depends on ==
+
+ * [http://www.php.net/ PHP 5]
