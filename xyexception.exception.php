@@ -1,8 +1,16 @@
 <?php
 /**
+ * The main file of the XYException Library
+ *
+ * @package XYException
+ * @author Uwe L. Korn <uwelk@xhochy.org>
+ */
+ 
+/**
  * The parent class for using the framework. Do not use this class directly!
  *
  * @author Uwe L. Korn <uwelk@xhochy.org>
+ * @package XYException
  */
 abstract class XYException extends Exception
 {
@@ -16,14 +24,14 @@ abstract class XYException extends Exception
 	/**
 	 * Der Stack des Programms bei Auftritt des Fehlers
 	 * 
-	 * @type array
+	 * @var array
 	 */
     protected $aTrace;
     
     /**
      * Variablen, die vllt zur Behebung des Fehlers beitragen könnten
      * 
-     * @type array 
+     * @var array 
      */
     protected $aVars;
 
