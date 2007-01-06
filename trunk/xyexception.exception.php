@@ -106,7 +106,7 @@ abstract class XYException extends Exception
      *
      * @author Uwe L. Korn <uwelk@xhochy.org>
      */
-    public function SendExcpetionPerMail()
+    public function SendExceptionPerMail()
     {
         Global $_CONFIG;
         $headers = 'From: '.$_CONFIG['Mail']['From'];
