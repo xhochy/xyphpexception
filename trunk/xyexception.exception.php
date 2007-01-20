@@ -123,7 +123,7 @@ abstract class XYException extends Exception
         $oMail->Password = $_CONFIG['Errors']['Mail']['Password'];
         $oMail->From = $_CONFIG['Errors']['Mail']['From'];
         $oMail->FromName = $_CONFIG['Errors']['Mail']['FromName'];
-        $oMail->AddAddress($_CONFIG['Errors']['Mail']['To'];
+        $oMail->AddAddress($_CONFIG['Errors']['Mail']['To']);
         $oMail->IsHTML(false);
         $oMail->Subject = $this->getMailSubject();
         $oMail->Body = $body;
