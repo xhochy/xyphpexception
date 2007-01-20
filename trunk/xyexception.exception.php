@@ -109,13 +109,25 @@ abstract class XYException extends Exception
     public function SendExceptionPerMail()
     {
         Global $_CONFIG;
-        $headers = 'From: '.$_CONFIG['Mail']['From'];
+
         $body = 'Server: '.$_SERVER['HTTP_HOST']."\n";
         $body.= 'System: '.shell_exec('uname -a');
         $body.= 'Sofware: '.$_SERVER["SERVER_SOFTWARE"]."\n";
         $body.= "\n";
         $body.= $this->getMailBody();
-        mail($_CONFIG['Mail']['Recipent'], $this->getMailSubject(), $body, $headers);
+
+        $oMail = new PHPMailer();
+        $oMail->Host = $_CONFIG['Errors']['Mail']['Host'];
+        $oMail->SMTPAuth = $_CONFIG['Errors']['Mail']['SMTPAuth'];
+        $oMail->Username = $_CONFIG['Errors']['Mail']['Username'];
+        $oMail->Password = $_CONFIG['Errors']['Mail']['Password'];
+        $oMail->From = $_CONFIG['Errors']['Mail']['From'];
+        $oMail->FromName = $_CONFIG['Errors']['Mail']['FromName'];
+        $oMail->AddAddress($_CONFIG['Errors']['Mail']['To'];
+        $oMail->IsHTML(false);
+        $oMail->Subject = $this->getMailSubject();
+        $oMail->Body = $body;
+        $oMail->Send();
     }
 
     /**
