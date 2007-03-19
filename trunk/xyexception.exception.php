@@ -9,14 +9,18 @@
 /**
  * The parent class for using the framework. Do not use this class directly!
  *
+ * Based on the standard {@link http://php.net/manual/en/language.exceptions.php}
+ *
  * @author Uwe L. Korn <uwelk@xhochy.org>
  * @package XYException
+ * @see Exception
  */
 abstract class XYException extends Exception
 {
     public function __construct($message, $code = 0)
     {
         parent::__construct($message, $code);
+        
         $this->aTrace = array();
         $this->aVars = array();
     }
