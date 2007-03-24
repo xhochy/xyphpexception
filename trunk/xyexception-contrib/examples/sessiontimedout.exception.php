@@ -13,13 +13,13 @@ class SessionTimedOutException extends XYException
         parent::__construct($message, $code);
     }
 
-    protected function GetMailSubject()
+    protected function getMailSubject()
     {
         return 'SessionTimedOutException in file '.$this->aTrace[0]['File']
             .' at line '.$this->aTrace[0]['Line'];
     }
 
-    protected function GetMailBody()
+    protected function getMailBody()
     {
         $sResult = 'SessionTimedOutException in file '.$this->aTrace[0]['File']
             .' at line '.$this->aTrace[0]['Line']."\n";

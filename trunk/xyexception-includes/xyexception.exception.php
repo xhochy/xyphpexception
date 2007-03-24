@@ -15,7 +15,7 @@
  * @package XYException
  * @see Exception
  */
-abstract class XYException extends Exception
+class XYException extends Exception
 {
     public function __construct($message, $code = 0)
     {
@@ -141,7 +141,11 @@ abstract class XYException extends Exception
      * @author Uwe L. Korn <uwelk@xhochy.org>
      * @return string
      */
-    abstract protected function getMailSubject();
+    protected function getMailSubject()
+    {
+        return __CLASS__.' in file '.$this->aTrace[0]['File']
+            .' at line '.$this->aTrace[0]['Line'];
+    }
 
     /**
      * Gets the main bod of the Message
@@ -150,6 +154,14 @@ abstract class XYException extends Exception
      * @author Uwe L. Korn <uwelk@xhochy.org>
      * @return string
      */
-    abstract protected function getMailBody();
+    protected function getMailBody()
+   {
+        $sResult = __CLASS__.' in file '.$this->aTrace[0]['File']
+            .' at line '.$this->aTrace[0]['Line']."\n";
+        $sResult.= "\nTrace:\n";
+        $sResult.= $this->TraceToString();
+        $sResult.= "\nVars:\n";
+        $sResult.= $this->VarsToString();
+        return $sResult;
+    }
 }
-?>

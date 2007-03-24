@@ -1,2 +1,2 @@
 #!/bin/sh
-phpdoc -t doc/ -f xyexception.exception.php
+phpdoc -t doc/ -f xyexception-includes/xyexception.exception.php
