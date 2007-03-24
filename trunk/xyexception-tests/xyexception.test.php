@@ -3,16 +3,13 @@
  * This file tests the XYException
  * 
  * @author Uwe L. Korn <uwelk@xhochy.org>
- * @package XYException-Test
+ * @package XYException-Tests
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
 
-## Defines ##
-
-define('SCHOORBS_NOGUI',true);
-
 ## Main XYException Code Includes ##
 
+/** Load the class definition */
 require_once dirname(__FILE__).'/../xyexception-includes/xyexception.exception.php';
 
 ## PHPUnit Includes ##
@@ -25,7 +22,7 @@ require_once 'PHPUnit/Extensions/ExceptionTestCase.php';
 /**
  * Testsuite for the XYException class
  * 
- * @package XYException-Test
+ * @package XYException-Tests
  * @author Uwe L. Korn <uwelk@xhochy.org>
  */ 
 class XYExceptionTest extends PHPUnit_Extensions_ExceptionTestCase

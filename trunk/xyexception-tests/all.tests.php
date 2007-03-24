@@ -9,6 +9,7 @@
 
 ## Defines ##
  
+/** Define AllTests::main as startup method if not already done */
 if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'AllTests::main');
 }
@@ -23,7 +24,13 @@ require_once 'PHPUnit/Framework.php';
 require_once 'PHPUnit/TextUI/TestRunner.php';
 
 ## The Testsuite ##
- 
+
+/**
+ * Make all Tests
+ * 
+ * @author Uwe L. Korn <uwelk@xhochy.org>
+ * @package XYException-Tests
+ */
 class AllTests
 {
     public static function main()
