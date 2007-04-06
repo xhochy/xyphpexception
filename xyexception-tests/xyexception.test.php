@@ -58,4 +58,24 @@ class XYExceptionTest extends PHPUnit_Extensions_ExceptionTestCase
 			$this->fail();
 		}
 	}
+	
+	public function testgetMailSubject_Basic()
+	{
+		$oException = new XYException('testerror',0);
+		$oException->addTrace(__FILE__, __LINE__, __FUNCTION__, __CLASS__);
+		$sMailSubject = $oException->getMailSubject();
+		if (empty($sMailSubject)) {
+			$this->fail();
+		}
+	}
+	
+	public function testgetMailBody_Basic()
+	{
+		$oException = new XYException('testerror',0);
+		$oException->addTrace(__FILE__, __LINE__, __FUNCTION__, __CLASS__);
+		$sMailBody = $oException->getMailBody();
+		if (empty($sMailBody)) {
+			$this->fail();
+		}
+	}
 }
