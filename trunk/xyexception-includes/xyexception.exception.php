@@ -141,7 +141,7 @@ class XYException extends Exception
      * @author Uwe L. Korn <uwelk@xhochy.org>
      * @return string
      */
-    protected function getMailSubject()
+    public function getMailSubject()
     {
         return __CLASS__.' in file '.$this->aTrace[0]['File']
             .' at line '.$this->aTrace[0]['Line'];
@@ -154,7 +154,7 @@ class XYException extends Exception
      * @author Uwe L. Korn <uwelk@xhochy.org>
      * @return string
      */
-    protected function getMailBody()
+    public function getMailBody()
    {
         $sResult = __CLASS__.' in file '.$this->aTrace[0]['File']
             .' at line '.$this->aTrace[0]['Line']."\n";
