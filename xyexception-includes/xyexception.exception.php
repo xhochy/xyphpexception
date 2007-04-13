@@ -21,16 +21,8 @@ class XYException extends Exception
     {
         parent::__construct($message, $code);
         
-        $this->aTrace = array();
         $this->aVars = array();
     }
-
-	/**
-	 * Der Stack des Programms bei Auftritt des Fehlers
-	 * 
-	 * @var array
-	 */
-    protected $aTrace;
     
     /**
      * Variablen, die vllt zur Behebung des Fehlers beitragen könnten
@@ -38,22 +30,6 @@ class XYException extends Exception
      * @var array 
      */
     protected $aVars;
-
-    /**
-     * Fuegt eine Ebene der Exception hinzu
-     * Excpetions sollten möglichst spät erst zum Schluss des Scripts fuehren
-     * 
-     * @author Uwe L. Korn <uwelk@xhochy.org>
-     * @param string $sLine
-     * @param string $sFile
-     * @param string $sFunction
-     * @param string $sClass   
-     */
-    public function AddTrace($sFile, $sLine, $sFunction = '', $sClass = '')
-    {
-        $this->aTrace[] = array('File' => $sFile, 'Line' =>$sLine,
-            'Class' => $sClass, 'Function' => $sFunction);
-    }
     
     /**
      * Fuegt eine Variable den Debug-Informationen hinzu
@@ -65,35 +41,13 @@ class XYException extends Exception
     {
     	$this->aVars[$sKey] = $sValue;
     }
-
-    /**
-     * Gibt aTrace als String aus
-     * 
-     * @return string
-     */
-    public function TraceToString()
-    {
-        $sResult = '';
-        for($i = 0; $i < count($this->aTrace); $i++)
-        {
-        	$sResult.= "\t";	
-            $sResult.= $this->aTrace[$i]['File'].':';
-            $sResult.= $this->aTrace[$i]['Line'].':';
-            if($this->aTrace[$i]['Class'] != '')
-                $sResult.= "\t".$this->aTrace[$i]['Class'].'::';
-            if($this->aTrace[$i]['Function'] != '')
-                $sResult.= $this->aTrace[$i]['Function'];
-            $sResult.= "\n";
-        }
-        return $sResult;
-    }
     
     /**
      * Gibt die Debug-Variabeln aus
      * 
      * @return string
      */
-    public function VarsToString()
+    public function getVarsAsString()
     {
     	$sResult = '';
     	foreach($this->aVars as $sKey=>$sValue)
@@ -143,8 +97,9 @@ class XYException extends Exception
      */
     public function getMailSubject()
     {
-        return __CLASS__.' in file '.$this->aTrace[0]['File']
-            .' at line '.$this->aTrace[0]['Line'];
+        $aTrace = $this->getTrace();
+        return __CLASS__.' in file '.$aTrace[1]['file']
+            .' at line '.$aTrace[1]['line'];
     }
 
     /**
@@ -156,12 +111,13 @@ class XYException extends Exception
      */
     public function getMailBody()
    {
-        $sResult = __CLASS__.' in file '.$this->aTrace[0]['File']
-            .' at line '.$this->aTrace[0]['Line']."\n";
+        $aTrace = $this->getTrace();
+        $sResult = __CLASS__.' in file '.$aTrace[1]['file']
+            .' at line '.$aTrace[1]['line']."\n";
         $sResult.= "\nTrace:\n";
-        $sResult.= $this->TraceToString();
+        $sResult.= $this->getTraceAsString();
         $sResult.= "\nVars:\n";
-        $sResult.= $this->VarsToString();
+        $sResult.= $this->getVarsAsString();
         return $sResult;
     }
 }
