@@ -43,18 +43,8 @@ class XYExceptionTest extends PHPUnit_Extensions_ExceptionTestCase
 	{
 		$oException = new XYException('testerror',0);
 		$oException->addVar('s','t');
-		$sVars = $oException->VarsToString();
+		$sVars = $oException->getVarsAsString();
 		if(empty($sVars)) {
-			$this->fail();
-		}
-	}
-	
-	public function testAddTrace()
-	{
-		$oException = new XYException('testerror',0);
-		$oException->addTrace(__FILE__, __LINE__, __FUNCTION__, __CLASS__);
-		$sTrace = $oException->TraceToString();
-		if(empty($sTrace)) {
 			$this->fail();
 		}
 	}
@@ -62,7 +52,6 @@ class XYExceptionTest extends PHPUnit_Extensions_ExceptionTestCase
 	public function testgetMailSubject_Basic()
 	{
 		$oException = new XYException('testerror',0);
-		$oException->addTrace(__FILE__, __LINE__, __FUNCTION__, __CLASS__);
 		$sMailSubject = $oException->getMailSubject();
 		if (empty($sMailSubject)) {
 			$this->fail();
@@ -72,7 +61,6 @@ class XYExceptionTest extends PHPUnit_Extensions_ExceptionTestCase
 	public function testgetMailBody_Basic()
 	{
 		$oException = new XYException('testerror',0);
-		$oException->addTrace(__FILE__, __LINE__, __FUNCTION__, __CLASS__);
 		$sMailBody = $oException->getMailBody();
 		if (empty($sMailBody)) {
 			$this->fail();
